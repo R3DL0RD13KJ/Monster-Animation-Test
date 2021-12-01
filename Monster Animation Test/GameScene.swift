@@ -10,79 +10,77 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    var mechaLizard = SKSpriteNode()
+    var birdMecha = SKSpriteNode()
+    var wormMonster = SKSpriteNode()
+    
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
-    override func didMove(to view: SKView) {
+    override func didMove(to view: SKView)
+    {
+        createmechalizard()
+        createbirdmecha()
+        createwormmonster()
+    }
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
         
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
-        
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-        
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
-            
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
-        }
     }
     
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
-        
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    
-    override func update(_ currentTime: TimeInterval) {
+    override func update(_ currentTime: TimeInterval)
+    {
         // Called before each frame is rendered
     }
+    
+    func createmechalizard()
+    {
+        let lizardTexture = SKTexture(imageNamed: "Mecha Lizard-1")
+        mechaLizard = SKSpriteNode(texture: lizardTexture)
+        mechaLizard.position = CGPoint(x: frame.maxX, y: frame.maxY)
+        addChild(mechaLizard)
+        let frame2 = SKTexture(imageNamed: "Mecha Lizard-2")
+        let frame3 = SKTexture(imageNamed: "Mecha Lizard-3")
+        let frame4 = SKTexture(imageNamed: "Mecha Lizard-4")
+        let frame5 = SKTexture(imageNamed: "Mecha Lizard-5")
+        let frame6 = SKTexture(imageNamed: "Mecha Lizard-6")
+        let frame7 = SKTexture(imageNamed: "Mecha Lizard-7")
+        let frame8 = SKTexture(imageNamed: "Mecha Lizard-8")
+        let frame9 = SKTexture(imageNamed: "Mecha Lizard-9")
+        let frame10 = SKTexture(imageNamed: "Mecha Lizard-10")
+        let frame11 = SKTexture(imageNamed: "Mecha Lizard-11")
+        let frame12 = SKTexture(imageNamed: "Mecha Lizard-12")
+        let frame13 = SKTexture(imageNamed: "Mecha Lizard-13")
+        
+        let animation = SKAction.animate(withNormalTextures: [lizardTexture, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9, frame10, frame11, frame12, frame13], timePerFrame: 0.12)
+        mechaLizard.run(SKAction.repeatForever(animation))
+    }
+    
+    
+    func createbirdmecha()
+    {
+        let birdTexture = SKTexture(imageNamed: "Bird Monster-1")
+        birdMecha = SKSpriteNode(texture: birdTexture)
+        birdMecha.position = CGPoint(x:frame.midX, y: frame.midY)
+        addChild(birdMecha)
+        let frame2 = SKTexture(imageNamed: "Bird Monster-2")
+    }
+    
+    
+    func createwormmonster()
+    {
+        let wormTexture = SKTexture(imageNamed: "Worm Monster-1")
+        wormMonster = SKSpriteNode(texture: wormTexture)
+        wormMonster.position = CGPoint(x:frame.minX, y: frame.minY)
+        addChild(wormMonster)
+        let frame2 = SKTexture(imageNamed: "Worm Monster-2")
+    }
+    
+    
+    
+    
+    
+    
 }
