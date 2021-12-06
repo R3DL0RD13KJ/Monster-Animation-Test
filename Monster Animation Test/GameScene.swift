@@ -92,6 +92,8 @@ class GameScene: SKScene {
         let frame26 = SKTexture(imageNamed: "Bird Monster-26")
         let frame27 = SKTexture(imageNamed: "Bird Monster-27")
         let frame28 = SKTexture(imageNamed: "Bird Monster-28")
+        let animation = SKAction.animate(withNormalTextures: [birdTexture, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9, frame10, frame11, frame12, frame13, frame14, frame15, frame16, frame17, frame18, frame19, frame20, frame21, frame22, frame23, frame24, frame25, frame26, frame27, frame28], timePerFrame: 0.12)
+        birdMecha.run(SKAction.repeatForever(animation))
     }
     
     
@@ -141,8 +143,8 @@ class GameScene: SKScene {
         let frame39 = SKTexture(imageNamed: "Worm Monster-39")
         let frame40 = SKTexture(imageNamed: "Worm Monster-40")
         let frame41 = SKTexture(imageNamed: "Worm Monster-41")
-        
-        
+        let animation = SKAction.animate(withNormalTextures: [wormTexture, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9, frame10, frame11, frame12, frame13, frame14, frame15, frame16, frame17, frame18, frame19, frame20, frame21, frame22, frame23, frame24, frame25, frame26, frame27, frame28, frame29, frame30, frame31, frame32, frame33, frame34, frame35, frame36, frame37, frame38, frame39, frame40, frame41], timePerFrame: 0.12)
+        wormMonster.run(SKAction.repeatForever(animation))
     }
     
     
